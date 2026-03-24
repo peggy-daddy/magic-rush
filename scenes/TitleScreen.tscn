@@ -1,0 +1,225 @@
+[gd_scene load_steps=3 format=3 uid="uid://titlescreen"]
+
+[ext_resource type="Script" path="res://scripts/TitleScreen.gd" id="1"]
+[ext_resource type="FontFile" path="res://assets/fonts/kingstone-font/KingstoneDemoRegular-G3n5G.ttf" id="KF"]
+
+[node name="TitleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.07, 0.03, 0.15, 1)
+
+[node name="BackgroundImage" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand_mode = 1
+stretch_mode = 6
+modulate = Color(1, 1, 1, 0.55)
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_top = 70.0
+offset_right = 320.0
+offset_bottom = 180.0
+text = "Magic Rush"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_fonts/font = ExtResource("KF")
+theme_override_font_sizes/font_size = 72
+theme_override_colors/font_color = Color(1.0, 0.843, 0.0, 1.0)
+theme_override_colors/font_shadow_color = Color(0.4, 0.2, 0.0, 0.85)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+
+[node name="SubtitleLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_top = 185.0
+offset_right = 300.0
+offset_bottom = 225.0
+text = "A Magical Delivery Game"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1.0, 1.0, 1.0, 1.0)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 265.0
+offset_right = 160.0
+offset_bottom = 530.0
+theme_override_constants/separation = 22
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 70)
+text = ">  Start Game"
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1.0, 0.95, 0.6, 1.0)
+
+[node name="HowToPlayButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 60)
+text = "?  How to Play"
+theme_override_font_sizes/font_size = 24
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(320, 60)
+text = "x  Quit"
+theme_override_font_sizes/font_size = 24
+
+[node name="HowToPlayPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -420.0
+offset_right = 420.0
+offset_bottom = 420.0
+visible = false
+z_index = 10
+clip_contents = true
+
+[node name="VBox" type="VBoxContainer" parent="HowToPlayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 10
+
+[node name="HTPTitle" type="Label" parent="HowToPlayPanel/VBox"]
+layout_mode = 2
+text = "Magic Rush — How to Play  (click anywhere to close)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1.0, 0.843, 0.0, 1.0)
+
+[node name="HTPScroll" type="ScrollContainer" parent="HowToPlayPanel/VBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 1
+
+[node name="HTPText" type="Label" parent="HowToPlayPanel/VBox/HTPScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "GOAL: Fill your Magic Meter to 100 for PERFECT VICTORY!
+      Survive 3 minutes without the meter hitting zero.
+
+MAGIC METER:
+  +10 for each NPC order delivered (max 8 orders each)
+  +40 for silencing the Demon Baby
+  -2 per second when Demon Baby is awake
+
+SANCTUARY:
+  Drag items from drawers to Slot A or B
+  Press CRAFT to combine -> item goes to Inventory
+  Drawers refill after 5 seconds
+
+LIVING ROOM:
+  Drag items from Inventory to NPCs
+  Click ! above NPC to see their request
+  4 NPCs, each has 8 orders to fulfill
+
+DEMON BABY (center):
+  Wakes every 60 seconds -- drains your Magic!
+  Craft Heart Seal (Obsidian+Crystal) and deliver to Baby
+  Obsidian = Water+Paper, Crystal = Candle+Potion
+
+3 ENDINGS:
+  PERFECT: Reach 100 Magic before time runs out!
+  NORMAL:  Survive 3 min with some Magic remaining
+  FAIL:    Magic hits zero -- you lose instantly!
+
+Controls: Left-click drag | SPACE pause | ESC quit | ENTER replay"
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="CloseHTPBtn" type="Button" parent="HowToPlayPanel/VBox"]
+layout_mode = 2
+text = "Got it!"
+theme_override_font_sizes/font_size = 18
+mouse_filter = 0
+
+[node name="CreditsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 350.0
+offset_bottom = 250.0
+visible = false
+z_index = 10
+
+[node name="VBox" type="VBoxContainer" parent="CreditsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 10
+
+[node name="CreditsTitle" type="Label" parent="CreditsPanel/VBox"]
+layout_mode = 2
+text = "Credits"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 28
+
+[node name="CreditsText" type="Label" parent="CreditsPanel/VBox"]
+layout_mode = 2
+text = "Game Design & Development: Peggy Daddy
+
+Art Assets:
+• ERW Village Interiors Pack (CC0 / Free Use) — backgrounds
+• Tasty Characters Village Pack (Free Use) — NPC sprites
+• Pixel Art RPG Icon Pack by Free Game Assets (Free) — item icons
+• ZOSMA UI Kit (Free) — UI panels, crystal icons
+• Cursor Pack 256 (Free) — custom cursor sprites
+• Kingstone Demo Font (Free Demo License) — title font
+
+Music & SFX: Royalty-free sources
+
+Engine: Godot 4 — godotengine.org (MIT License)"
+theme_override_font_sizes/font_size = 14
+autowrap_mode = 3
+
+[node name="CloseButton" type="Button" parent="CreditsPanel/VBox"]
+layout_mode = 2
+text = "Close"
+theme_override_font_sizes/font_size = 18

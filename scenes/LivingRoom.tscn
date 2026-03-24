@@ -1,0 +1,585 @@
+[gd_scene load_steps=10 format=3 uid="uid://livingroom"]
+
+[ext_resource type="Script" path="res://scripts/LivingRoom.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/mockup5.png" id="2"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/1.png" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/2.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/3.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/4.png" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/InventoryOverlay.tscn" id="7_inv"]
+[ext_resource type="Texture2D" path="res://assets/characters/baby_calm.png" id="8_baby_calm"]
+
+[node name="LivingRoom" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1")
+
+; ── BACKGROUND ──────────────────────────────────────────────────────────────
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="DarkOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.05, 0.03, 0.08, 0.25)
+mouse_filter = 2
+
+; ── HUD ─────────────────────────────────────────────────────────────────────
+; (HUD Panel, ChiSection, TimerSection, RoomTitle removed — handled by HUD.tscn autoload)
+
+; ── GRANDPA NPC — x range 80-280 ────────────────────────────────────────────
+; WalkArea is positioned so the body's absolute x will span 80-280 screen px
+
+[node name="GrandpaWalkArea" type="Control" parent="."]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 350.0
+offset_right = 380.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="GrandpaBody" type="Control" parent="GrandpaWalkArea"]
+layout_mode = 1
+offset_left = 80.0
+offset_top = 0.0
+offset_right = 230.0
+offset_bottom = 220.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ExclamationBtn" type="Button" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 0.0
+offset_right = 95.0
+offset_bottom = 36.0
+text = "!"
+theme_override_font_sizes/font_size = 22
+modulate = Color(1, 0.9, 0, 1)
+tooltip_text = "Click to see what Grandpa wants"
+
+[node name="ThoughtBubblePanel" type="Panel" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.0
+offset_right = 150.0
+offset_bottom = 90.0
+visible = false
+
+[node name="ThoughtBubble" type="Label" parent="GrandpaWalkArea/GrandpaBody/ThoughtBubblePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+text = "Wants: ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+
+[node name="GrandpaSprite" type="TextureRect" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 92.0
+offset_right = 140.0
+offset_bottom = 200.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GrandpaBtn" type="Button" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 92.0
+offset_right = 150.0
+offset_bottom = 210.0
+flat = true
+
+[node name="GrandpaNameLabel" type="Label" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 212.0
+offset_right = 150.0
+offset_bottom = 232.0
+text = "Grandpa"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="EmotionIcon" type="TextureRect" parent="GrandpaWalkArea/GrandpaBody"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 88.0
+offset_bottom = 84.0
+expand_mode = 1
+stretch_mode = 5
+visible = false
+visible = false
+
+[node name="GrandpaBubbleTimer" type="Timer" parent="GrandpaWalkArea"]
+wait_time = 3.0
+one_shot = true
+
+; ── DAD NPC — x range 320-500 ───────────────────────────────────────────────
+
+[node name="DadWalkArea" type="Control" parent="."]
+layout_mode = 1
+offset_left = 220.0
+offset_top = 350.0
+offset_right = 600.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="DadBody" type="Control" parent="DadWalkArea"]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 0.0
+offset_right = 250.0
+offset_bottom = 220.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ExclamationBtn" type="Button" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 0.0
+offset_right = 95.0
+offset_bottom = 36.0
+text = "!"
+theme_override_font_sizes/font_size = 22
+modulate = Color(1, 0.9, 0, 1)
+tooltip_text = "Click to see what Dad wants"
+
+[node name="ThoughtBubblePanel" type="Panel" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.0
+offset_right = 150.0
+offset_bottom = 90.0
+visible = false
+
+[node name="ThoughtBubble" type="Label" parent="DadWalkArea/DadBody/ThoughtBubblePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+text = "Wants: ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+
+[node name="DadSprite" type="TextureRect" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 92.0
+offset_right = 140.0
+offset_bottom = 200.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DadBtn" type="Button" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 92.0
+offset_right = 150.0
+offset_bottom = 210.0
+flat = true
+
+[node name="DadNameLabel" type="Label" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 212.0
+offset_right = 150.0
+offset_bottom = 232.0
+text = "Dad"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="EmotionIcon" type="TextureRect" parent="DadWalkArea/DadBody"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 88.0
+offset_bottom = 84.0
+expand_mode = 1
+stretch_mode = 5
+visible = false
+vertical_alignment = 1
+visible = false
+
+[node name="DadBubbleTimer" type="Timer" parent="DadWalkArea"]
+wait_time = 3.0
+one_shot = true
+
+; ── MOM NPC — x range 540-720 ───────────────────────────────────────────────
+
+[node name="MomWalkArea" type="Control" parent="."]
+layout_mode = 1
+offset_left = 440.0
+offset_top = 350.0
+offset_right = 820.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="MomBody" type="Control" parent="MomWalkArea"]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 0.0
+offset_right = 250.0
+offset_bottom = 220.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ExclamationBtn" type="Button" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 0.0
+offset_right = 95.0
+offset_bottom = 36.0
+text = "!"
+theme_override_font_sizes/font_size = 22
+modulate = Color(1, 0.9, 0, 1)
+tooltip_text = "Click to see what Mom wants"
+
+[node name="ThoughtBubblePanel" type="Panel" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.0
+offset_right = 150.0
+offset_bottom = 90.0
+visible = false
+
+[node name="ThoughtBubble" type="Label" parent="MomWalkArea/MomBody/ThoughtBubblePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+text = "Wants: ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+
+[node name="MomSprite" type="TextureRect" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 92.0
+offset_right = 140.0
+offset_bottom = 200.0
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MomBtn" type="Button" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 92.0
+offset_right = 150.0
+offset_bottom = 210.0
+flat = true
+
+[node name="MomNameLabel" type="Label" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 212.0
+offset_right = 150.0
+offset_bottom = 232.0
+text = "Mom"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="EmotionIcon" type="TextureRect" parent="MomWalkArea/MomBody"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 88.0
+offset_bottom = 84.0
+expand_mode = 1
+stretch_mode = 5
+visible = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+
+[node name="MomBubbleTimer" type="Timer" parent="MomWalkArea"]
+wait_time = 3.0
+one_shot = true
+
+; ── CHILD NPC — x range 760-960 ─────────────────────────────────────────────
+
+[node name="ChildWalkArea" type="Control" parent="."]
+layout_mode = 1
+offset_left = 660.0
+offset_top = 350.0
+offset_right = 1060.0
+offset_bottom = 600.0
+mouse_filter = 2
+
+[node name="ChildBody" type="Control" parent="ChildWalkArea"]
+layout_mode = 1
+offset_left = 100.0
+offset_top = 0.0
+offset_right = 250.0
+offset_bottom = 220.0
+scale = Vector2(0.5, 0.5)
+
+[node name="ExclamationBtn" type="Button" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 55.0
+offset_top = 0.0
+offset_right = 95.0
+offset_bottom = 36.0
+text = "!"
+theme_override_font_sizes/font_size = 22
+modulate = Color(1, 0.9, 0, 1)
+tooltip_text = "Click to see what Child wants"
+
+[node name="ThoughtBubblePanel" type="Panel" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 38.0
+offset_right = 150.0
+offset_bottom = 90.0
+visible = false
+
+[node name="ThoughtBubble" type="Label" parent="ChildWalkArea/ChildBody/ThoughtBubblePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+text = "Wants: ..."
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 11
+autowrap_mode = 2
+
+[node name="ChildSprite" type="TextureRect" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 92.0
+offset_right = 140.0
+offset_bottom = 200.0
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChildBtn" type="Button" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 92.0
+offset_right = 150.0
+offset_bottom = 210.0
+flat = true
+
+[node name="ChildNameLabel" type="Label" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 0.0
+offset_top = 212.0
+offset_right = 150.0
+offset_bottom = 232.0
+text = "Child"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 14
+
+[node name="EmotionIcon" type="TextureRect" parent="ChildWalkArea/ChildBody"]
+layout_mode = 1
+offset_left = 40.0
+offset_top = 36.0
+offset_right = 88.0
+offset_bottom = 84.0
+expand_mode = 1
+stretch_mode = 5
+visible = false
+horizontal_alignment = 1
+vertical_alignment = 1
+visible = false
+
+[node name="ChildBubbleTimer" type="Timer" parent="ChildWalkArea"]
+wait_time = 3.0
+one_shot = true
+
+; ── BABY AREA ─── bottom-left corner ────────────────────────────────────────
+
+[node name="BabyArea" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 565.0
+offset_top = 170.0
+offset_right = 700.0
+offset_bottom = 310.0
+theme_override_constants/separation = 4
+visible = true
+
+[node name="BabyAlertLabel" type="Label" parent="BabyArea"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 13
+modulate = Color(0.6, 0.6, 0.6, 1)
+autowrap_mode = 2
+visible = false
+
+[node name="BabyBtn" type="Button" parent="BabyArea"]
+layout_mode = 2
+custom_minimum_size = Vector2(130, 130)
+disabled = true
+pivot_offset = Vector2(65, 65)
+
+[node name="BabyColorBlock" type="ColorRect" parent="BabyArea/BabyBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -30.0
+color = Color(0.8, 0.75, 0.7, 0.6)
+mouse_filter = 2
+visible = false
+
+[node name="BabySprite" type="TextureRect" parent="BabyArea/BabyBtn"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+offset_left = -42.0
+offset_top = 8.0
+offset_right = 43.0
+offset_bottom = 108.0
+texture = ExtResource("8_baby_calm")
+expand_mode = 1
+stretch_mode = 5
+mouse_filter = 2
+
+[node name="BabyFaceLabel" type="Label" parent="BabyArea/BabyBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 0.0
+offset_top = 10.0
+offset_right = 0.0
+offset_bottom = -30.0
+text = ""
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="BabyBtnLabel" type="Label" parent="BabyArea/BabyBtn"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+offset_bottom = -4.0
+text = "Sleeping..."
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+
+[node name="BabyStatusLabel" type="Label" parent="BabyArea"]
+layout_mode = 2
+text = ""
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 12
+modulate = Color(1, 0.5, 0.5, 1)
+autowrap_mode = 3
+visible = false
+
+; ── STATUS + INSTRUCTIONS (hidden — purple text removed per task 7) ─────────
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 220.0
+offset_top = 620.0
+offset_right = 1060.0
+offset_bottom = 670.0
+text = "Deliver items to NPCs to fill the Chi Meter!"
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+visible = false
+
+[node name="InstructionLabel" type="Label" parent="."]
+layout_mode = 1
+offset_left = 220.0
+offset_top = 672.0
+offset_right = 1060.0
+offset_bottom = 710.0
+text = "Click ! to see what the NPC wants. Click the NPC to deliver."
+theme_override_font_sizes/font_size = 13
+horizontal_alignment = 1
+modulate = Color(0.7, 0.7, 0.9, 1)
+visible = false
+
+; ── NAV BUTTON ─────────────────────────────────────────────────────────────
+
+[node name="GoToSanctuaryBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -68.0
+offset_right = -10.0
+offset_bottom = -10.0
+text = "< Back to Sanctuary"
+theme_override_font_sizes/font_size = 15
+visible = false
+
+[node name="NavLeftBtn" type="Button" parent="."]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 0.0
+offset_top = -30.0
+offset_right = 60.0
+offset_bottom = 30.0
+text = "<"
+theme_override_font_sizes/font_size = 28
+
+; ── TIMERS + OVERLAY ───────────────────────────────────────────────────────
+
+[node name="ChiFlashTimer" type="Timer" parent="."]
+
+[node name="TransitionOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0, 0, 0, 0)
+mouse_filter = 2
+

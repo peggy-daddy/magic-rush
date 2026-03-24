@@ -1,0 +1,655 @@
+[gd_scene format=3 uid="uid://sanctuary"]
+
+[ext_resource type="Script" uid="uid://bswjy2yq3hd4u" path="res://scripts/Sanctuary.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwtvmqmdeaa7u" path="res://assets/sprites/backgrounds/sanctuary/wall.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://di6cgh7m0l5st" path="res://assets/sprites/backgrounds/sanctuary/floor.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://c6ojkk4g4m6t6" path="res://assets/sprites/backgrounds/sanctuary/window-grass.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://du17bywjvn4s0" path="res://assets/sprites/backgrounds/sanctuary/window-frame.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://d2yp15xm0rm8b" path="res://assets/sprites/backgrounds/sanctuary/curtain.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://c7sn7h7dcmy4l" path="res://assets/sprites/backgrounds/sanctuary/chair.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://buk4svqhp7ymp" path="res://assets/sprites/drawers/cabinet1-drawer1.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://l71suf611yko" path="res://assets/sprites/backgrounds/sanctuary/ceiling.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://c1amg0oroqfrk" path="res://assets/sprites/backgrounds/sanctuary/carpet.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://c5m02h5pibxy" path="res://assets/sprites/drawers/cabinet1-board.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bqjy0tfqwhpdw" path="res://assets/backgrounds/mockup2.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://cjkj2ao304eg5" path="res://assets/ui/Foldingpaper.png" id="14"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_craft"]
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 6.0
+color = Color(1, 0.9, 0.2, 1)
+
+[node name="Sanctuary" type="Control" unique_id=506432127]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1994569097]
+modulate = Color(1.1, 1.1, 1.1, 1)
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("13")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgWall" type="TextureRect" parent="." unique_id=545368289]
+visible = false
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 490.0
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgCeiling" type="TextureRect" parent="." unique_id=929586472]
+visible = false
+layout_mode = 1
+offset_right = 1280.0
+offset_bottom = 60.0
+texture = ExtResource("10")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgFloor" type="TextureRect" parent="." unique_id=1580731821]
+visible = false
+layout_mode = 1
+offset_top = 465.0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgCarpet" type="TextureRect" parent="." unique_id=2127520606]
+visible = false
+layout_mode = 1
+offset_left = 200.0
+offset_top = 530.0
+offset_right = 1080.0
+offset_bottom = 680.0
+texture = ExtResource("11")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgWindowGrass" type="TextureRect" parent="." unique_id=2054890393]
+visible = false
+layout_mode = 1
+offset_left = 62.0
+offset_top = 62.0
+offset_right = 252.0
+offset_bottom = 390.0
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgWindowFrame" type="TextureRect" parent="." unique_id=98360952]
+visible = false
+layout_mode = 1
+offset_left = 50.0
+offset_top = 55.0
+offset_right = 276.0
+offset_bottom = 466.0
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgCurtain" type="TextureRect" parent="." unique_id=1641833546]
+visible = false
+layout_mode = 1
+offset_left = 20.0
+offset_top = 30.0
+offset_right = 320.0
+offset_bottom = 530.0
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="BgChair" type="TextureRect" parent="." unique_id=1274540402]
+visible = false
+layout_mode = 1
+offset_left = 1090.0
+offset_top = 400.0
+offset_right = 1240.0
+offset_bottom = 575.0
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="ParchmentBg" type="TextureRect" parent="." unique_id=1535113680]
+modulate = Color(1, 1, 1, 0.92)
+layout_mode = 1
+offset_left = -1.0
+offset_top = 263.0
+offset_right = 327.0
+offset_bottom = 709.0
+texture = ExtResource("14")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="RecipePanel" type="VBoxContainer" parent="." unique_id=432615811]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 300.0
+offset_right = 310.0
+offset_bottom = 645.0
+theme_override_constants/separation = 4
+
+[node name="RecipeTitle" type="Label" parent="RecipePanel" unique_id=768267588]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 18
+text = "* Recipes *"
+
+[node name="Recipe1" type="Label" parent="RecipePanel" unique_id=2048898303]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 16
+text = "• Eye: Paper + Candle"
+
+[node name="Recipe2" type="Label" parent="RecipePanel" unique_id=367687426]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 16
+text = "• Egg: Water + Potion"
+
+[node name="Recipe3" type="Label" parent="RecipePanel" unique_id=379959375]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 16
+text = "• Pearl: Book + Scroll
+• Key: Candle + Book
+• Apple: Water + Scroll"
+autowrap_mode = 2
+
+[node name="RecipeSpacer" type="Control" parent="RecipePanel" unique_id=1776541812]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="BabyRecipeTitle" type="Label" parent="RecipePanel" unique_id=530932051]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 18
+text = "!! Heart Seal (3 steps):"
+
+[node name="BabyRecipe1" type="Label" parent="RecipePanel" unique_id=1280235351]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 16
+text = "1. Water + Paper = Obsidian"
+
+[node name="BabyRecipe2" type="Label" parent="RecipePanel" unique_id=1044638736]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.29, 0.176, 0.039, 1)
+theme_override_font_sizes/font_size = 16
+text = "2. Candle + Potion = Crystal
+3. Obsidian + Crystal = Heart"
+autowrap_mode = 2
+
+[node name="CabinetBoard" type="TextureRect" parent="." unique_id=1096081383]
+visible = false
+layout_mode = 1
+offset_left = 318.0
+offset_top = 370.0
+offset_right = 886.0
+offset_bottom = 530.0
+texture = ExtResource("12")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DrawerGrid" type="GridContainer" parent="." unique_id=433370204]
+layout_mode = 1
+offset_left = 448.0
+offset_top = 280.0
+offset_right = 832.0
+offset_bottom = 400.0
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 3
+
+[node name="Drawer0" type="TextureButton" parent="DrawerGrid" unique_id=909988994]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer0Label" type="Label" parent="DrawerGrid/Drawer0" unique_id=1025311017]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Water Bottle"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer0" unique_id=1617061346]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drawer1" type="TextureButton" parent="DrawerGrid" unique_id=667685325]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer1Label" type="Label" parent="DrawerGrid/Drawer1" unique_id=1164431842]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Paper"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer1" unique_id=125147662]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drawer2" type="TextureButton" parent="DrawerGrid" unique_id=2039605114]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer2Label" type="Label" parent="DrawerGrid/Drawer2" unique_id=1877022285]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Candle"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer2" unique_id=578140069]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drawer3" type="TextureButton" parent="DrawerGrid" unique_id=1361505243]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer3Label" type="Label" parent="DrawerGrid/Drawer3" unique_id=1324385226]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Potion"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer3" unique_id=1953658853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drawer4" type="TextureButton" parent="DrawerGrid" unique_id=1220993005]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer4Label" type="Label" parent="DrawerGrid/Drawer4" unique_id=3777513]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Book"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer4" unique_id=352591753]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Drawer5" type="TextureButton" parent="DrawerGrid" unique_id=19438351]
+custom_minimum_size = Vector2(160, 110)
+layout_mode = 2
+texture_normal = ExtResource("8")
+ignore_texture_size = true
+
+[node name="Drawer5Label" type="Label" parent="DrawerGrid/Drawer5" unique_id=26189672]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0.8, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Scroll"
+horizontal_alignment = 1
+
+[node name="ItemIcon" type="TextureRect" parent="DrawerGrid/Drawer5" unique_id=943421755]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PrepStation" type="Panel" parent="." unique_id=210380433]
+layout_mode = 1
+offset_left = 322.0
+offset_top = 541.0
+offset_right = 842.0
+offset_bottom = 712.0
+
+[node name="SlotA" type="Panel" parent="PrepStation" unique_id=1907516448]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 40.0
+offset_right = 195.0
+offset_bottom = 165.0
+
+[node name="SlotABorder" type="ColorRect" parent="PrepStation/SlotA" unique_id=1216347462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.48, 0.35, 1)
+
+[node name="SlotAInner" type="ColorRect" parent="PrepStation/SlotA" unique_id=1931689850]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15, 0.12, 0.1, 0.9)
+
+[node name="Label" type="Label" parent="PrepStation/SlotA" unique_id=2015953097]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "Slot A
+(empty)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotAIcon" type="TextureRect" parent="PrepStation/SlotA" unique_id=1607531875]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlotB" type="Panel" parent="PrepStation" unique_id=1808804777]
+layout_mode = 1
+offset_left = 210.0
+offset_top = 40.0
+offset_right = 395.0
+offset_bottom = 165.0
+
+[node name="SlotBBorder" type="ColorRect" parent="PrepStation/SlotB" unique_id=1191657849]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.55, 0.48, 0.35, 1)
+
+[node name="SlotBInner" type="ColorRect" parent="PrepStation/SlotB" unique_id=1889908120]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.15, 0.12, 0.1, 0.9)
+
+[node name="Label" type="Label" parent="PrepStation/SlotB" unique_id=256659998]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 14
+text = "Slot B
+(empty)"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SlotBIcon" type="TextureRect" parent="PrepStation/SlotB" unique_id=839518397]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CraftButton" type="Button" parent="PrepStation" unique_id=631643946]
+layout_mode = 1
+offset_left = 410.0
+offset_top = 50.0
+offset_right = 519.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 20
+text = "CRAFT!"
+
+[node name="CraftFX" type="GPUParticles2D" parent="PrepStation" unique_id=858228574]
+position = Vector2(457, 95)
+emitting = false
+amount = 30
+lifetime = 0.8
+one_shot = true
+explosiveness = 0.8
+process_material = SubResource("ParticleProcessMaterial_craft")
+
+[node name="StatusLabel" type="Label" parent="." unique_id=1753911763]
+layout_mode = 1
+offset_left = 212.0
+offset_top = 828.0
+offset_right = 1092.0
+offset_bottom = 866.0
+theme_override_font_sizes/font_size = 15
+
+[node name="GoToLivingRoomBtn" type="Button" parent="." unique_id=22412870]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+offset_top = -68.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 15
+text = "Go to Living Room >"
+
+[node name="NavRightBtn" type="Button" parent="." unique_id=101164138]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -30.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 28
+text = ">"
+
+[node name="DragIcon" type="TextureRect" parent="." unique_id=1940093213]
+visible = false
+z_index = 100
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TransitionOverlay" type="ColorRect" parent="." unique_id=2646134]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = -2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,360 @@
+[gd_scene load_steps=5 format=3 uid="uid://hud_overlay"]
+
+[ext_resource type="Script" path="res://scripts/HUD.gd" id="1_hudscript"]
+[ext_resource type="Texture2D" path="res://assets/ui/Stage/Cristalblue.png" id="2_cristalblue"]
+[ext_resource type="Texture2D" path="res://assets/ui/Stage/Cristalorange.png" id="3_cristalorange"]
+[ext_resource type="Texture2D" path="res://assets/ui/Stage/Cristalred.png" id="4_cristalred"]
+
+[sub_resource type="StyleBoxFlat" id="1_hudbg"]
+bg_color = Color(0.05, 0.04, 0.10, 0.82)
+border_width_bottom = 2
+border_color = Color(0.55, 0.42, 0.12, 0.9)
+
+[node name="HUD" type="CanvasLayer"]
+layer = 5
+script = ExtResource("1_hudscript")
+
+; Full-width anchor strip at the top of the screen
+[node name="HUDPanel" type="PanelContainer" parent="."]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("1_hudbg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDPanel"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+; ── LEFT SECTION: Chi Bar (30% of HUD width) ─────────────────────────────
+
+[node name="ChiSection" type="HBoxContainer" parent="HUDPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+theme_override_constants/separation = 6
+
+[node name="ChiMargin" type="MarginContainer" parent="HUDPanel/HBoxContainer/ChiSection"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 11
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 11
+
+[node name="ChiHBox" type="HBoxContainer" parent="HUDPanel/HBoxContainer/ChiSection/ChiMargin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_constants/separation = 4
+
+[node name="CrystalIcon" type="TextureRect" parent="HUDPanel/HBoxContainer/ChiSection/ChiMargin/ChiHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(30, 30)
+texture = ExtResource("2_cristalblue")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ChiLabelMin" type="Label" parent="HUDPanel/HBoxContainer/ChiSection/ChiMargin/ChiHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "0"
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1.0)
+
+[node name="ChiBar" type="TextureProgressBar" parent="HUDPanel/HBoxContainer/ChiSection/ChiMargin/ChiHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+custom_minimum_size = Vector2(250, 30)
+min_value = 0.0
+max_value = 100.0
+value = 0.0
+nine_patch_stretch = true
+tint_under = Color(0.1, 0.08, 0.06, 0.8)
+tint_progress = Color(0.9, 0.15, 0.15, 1.0)
+tint_over = Color(0.4, 0.35, 0.18, 0.0)
+
+[node name="ChiLabelMax" type="Label" parent="HUDPanel/HBoxContainer/ChiSection/ChiMargin/ChiHBox"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "100"
+theme_override_font_sizes/font_size = 11
+theme_override_colors/font_color = Color(0.75, 0.75, 0.75, 1.0)
+
+; ── CENTER SECTION: Title + Score Display ─────────────────────────────────
+
+[node name="CenterSection" type="CenterContainer" parent="HUDPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="CenterVBox" type="VBoxContainer" parent="HUDPanel/HBoxContainer/CenterSection"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="TitleLabel" type="Label" parent="HUDPanel/HBoxContainer/CenterSection/CenterVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Magic Rush"
+horizontal_alignment = 1
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1.0, 0.88, 0.45, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+
+[node name="ScoreRow" type="HBoxContainer" parent="HUDPanel/HBoxContainer/CenterSection/CenterVBox"]
+layout_mode = 2
+alignment = 1
+theme_override_constants/separation = 8
+
+[node name="DeliveryLabel" type="Label" parent="HUDPanel/HBoxContainer/CenterSection/CenterVBox/ScoreRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Delivered: 0"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.85, 1.0, 0.85, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+
+[node name="StarPreviewLabel" type="Label" parent="HUDPanel/HBoxContainer/CenterSection/CenterVBox/ScoreRow"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "- -"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 13
+theme_override_colors/font_color = Color(0.6, 0.6, 0.6, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+
+; ── RIGHT SECTION: Timer + HUD Buttons ────────────────────────────────────
+
+[node name="TimerSection" type="HBoxContainer" parent="HUDPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.3
+alignment = 2
+theme_override_constants/separation = 4
+
+[node name="TimerMargin" type="MarginContainer" parent="HUDPanel/HBoxContainer/TimerSection"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="TimerLabel" type="Label" parent="HUDPanel/HBoxContainer/TimerSection/TimerMargin"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "03:00"
+horizontal_alignment = 2
+vertical_alignment = 1
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 1.0, 0.5, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+
+; ── HUD Action Buttons (Pause / Restart / Quit) ───────────────────────────
+
+[node name="HUDButtonsContainer" type="HBoxContainer" parent="HUDPanel/HBoxContainer/TimerSection"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="PauseBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "||"
+theme_override_font_sizes/font_size = 14
+
+[node name="RestartBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "R"
+theme_override_font_sizes/font_size = 14
+
+[node name="QuitBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "X"
+theme_override_font_sizes/font_size = 14
+
+[node name="RulesBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "?"
+theme_override_font_sizes/font_size = 14
+tooltip_text = "How to Play"
+
+[node name="BGMToggleBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "BGM"
+theme_override_font_sizes/font_size = 14
+tooltip_text = "Toggle BGM"
+
+[node name="SFXToggleBtn" type="Button" parent="HUDPanel/HBoxContainer/TimerSection/HUDButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 4
+custom_minimum_size = Vector2(32, 32)
+focus_mode = 2
+text = "SFX"
+theme_override_font_sizes/font_size = 11
+tooltip_text = "Toggle SFX"
+
+[node name="RightPad" type="MarginContainer" parent="HUDPanel/HBoxContainer/TimerSection"]
+layout_mode = 2
+theme_override_constants/margin_right = 8
+
+; ── RULES PANEL (shown when ? button pressed, works while paused) ────────────
+
+[node name="RulesPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -420.0
+offset_top = -340.0
+offset_right = 420.0
+offset_bottom = 340.0
+visible = false
+z_index = 20
+process_mode = 4
+
+[node name="RulesPanelMargin" type="MarginContainer" parent="RulesPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = 18.0
+offset_right = -18.0
+offset_bottom = -18.0
+theme_override_constants/separation = 10
+
+[node name="RulesVBox" type="VBoxContainer" parent="RulesPanel/RulesPanelMargin"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="RulesTitle" type="Label" parent="RulesPanel/RulesPanelMargin/RulesVBox"]
+layout_mode = 2
+text = "Magic Rush — How to Play  (click anywhere to close)"
+horizontal_alignment = 1
+theme_override_font_sizes/font_size = 18
+theme_override_colors/font_color = Color(1.0, 0.843, 0.0, 1.0)
+
+[node name="RulesText" type="Label" parent="RulesPanel/RulesPanelMargin/RulesVBox"]
+layout_mode = 2
+text = "GOAL: Fill your Magic Meter to 100 for PERFECT VICTORY!
+      Survive 3 minutes without the meter hitting zero.
+
+MAGIC METER:
+  +10 for each NPC order delivered (max 8 orders each)
+  +40 for silencing the Demon Baby
+  -2 per second when Demon Baby is awake
+
+SANCTUARY:
+  Drag items from drawers to Slot A or B
+  Press CRAFT to combine -> item goes to Inventory
+  Drawers refill after 5 seconds
+
+LIVING ROOM:
+  Drag items from Inventory to NPCs
+  Click ! above NPC to see their request
+  4 NPCs, each has 8 orders to fulfill
+
+DEMON BABY (center):
+  Wakes every 60 seconds -- drains your Magic!
+  Craft Heart Seal (Obsidian+Crystal) and deliver to Baby
+  Obsidian = Water+Paper, Crystal = Candle+Potion
+
+3 ENDINGS:
+  PERFECT: Reach 100 Magic before time runs out!
+  NORMAL:  Survive 3 min with some Magic remaining
+  FAIL:    Magic hits zero -- you lose instantly!
+
+Controls: Left-click drag | SPACE pause | ESC quit | ENTER replay"
+theme_override_font_sizes/font_size = 13
+autowrap_mode = 3
+
+[node name="CloseRulesBtn" type="Button" parent="RulesPanel"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 380.0
+offset_top = 8.0
+offset_right = 420.0
+offset_bottom = 40.0
+z_index = 20
+text = "X"
+theme_override_font_sizes/font_size = 16
+
+; ── PAUSED OVERLAY ─────────────────────────────────────────────────────────
+
+[node name="PausedOverlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+visible = false
+z_index = 50
+process_mode = 4
+
+[node name="PausedLabel" type="Label" parent="PausedOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -60.0
+offset_right = 300.0
+offset_bottom = 60.0
+text = "PAUSED
+(Press SPACE to resume)"
+horizontal_alignment = 1
+vertical_alignment = 1
+z_index = 50
+visible = true
+theme_override_font_sizes/font_size = 48
+theme_override_colors/font_color = Color(1.0, 1.0, 1.0, 1.0)
+theme_override_colors/font_shadow_color = Color(0.0, 0.0, 0.0, 0.85)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3

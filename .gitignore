@@ -1,0 +1,12 @@
+# Godot generated
+*.import
+*.uid
+.godot/
+export_presets.cfg
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Metadata
+*.meta

@@ -1,8 +1,9 @@
 # Magic Rush 🌟
-**A time-management crafting delivery game**
-**By: Peggy_Daddy (Scarlett Y)  | Engine: Godot 4**
 
-Itchi.io - play online: https://peggy-daddy.itch.io/magic-rush
+A chaotic time-management crafting game where you're the only thing standing between a household and complete magical collapse.
+
+Built in Godot 4 for a game design course. Started as a feng shui delivery concept, ended up as something with a lot more personality.
+
 ---
 
 ## What is this
@@ -29,11 +30,10 @@ Three possible endings:
 - Drag the Heart Seal onto the Baby when it wakes up
 
 **Controls:**
-- **Drag**: Left-click hold → drag item
-- **Deliver**: Drag item from Backpack onto NPC or Baby
-- **SPACE**: Pause / unpause
-- **ESC**: Quit game
-- **ENTER**：Restart game
+- Left click + drag to pick up / deliver items
+- SPACE to pause
+- ESC to quit
+- ENTER to restart after game over
 
 **Recipes:**
 
@@ -56,12 +56,12 @@ Three possible endings:
 
 Requires **Godot 4** (tested on 4.6.1).
 
-```
-# Open in editor
-open -a Godot godot-project
+```bash
+# Open in Godot editor (Mac)
+open -a Godot .
 
 # Or from terminal
-/Applications/Godot.app/Contents/MacOS/Godot --path godot-project/
+/Applications/Godot.app/Contents/MacOS/Godot --path .
 ```
 
 No export templates needed to run from editor.
@@ -71,49 +71,59 @@ No export templates needed to run from editor.
 ## What's in here
 
 ```
-godot-project/
-├── scenes/          # TitleScreen, Sanctuary, LivingRoom, GameOver, HUD, Inventory
-├── scripts/         # GDScript — GameManager, AudioManager, scene controllers
+magic-rush/
+├── project.godot            Godot 4 project config
+├── icon.svg                 Game icon
+├── scenes/                  All scene files (.tscn)
+│   ├── TitleScreen.tscn
+│   ├── Sanctuary.tscn
+│   ├── LivingRoom.tscn
+│   ├── GameOver.tscn
+│   ├── HUD.tscn
+│   └── InventoryOverlay.tscn
+├── scripts/                 GDScript logic
+│   ├── GameManager.gd       Core game state, signals, chi/timer
+│   ├── AudioManager.gd      BGM + SFX autoload
+│   ├── Sanctuary.gd
+│   ├── LivingRoom.gd
+│   ├── HUD.gd
+│   ├── TitleScreen.gd
+│   ├── GameOver.gd
+│   └── InventoryOverlay.gd
 ├── assets/
-│   ├── backgrounds/ # Room mockups + button panel art
-│   ├── bgm/         # Background music + SFX (BGM, Click, Deliver, Baby Siren)
-│   ├── characters/  # Baby calm + angry sprites
-│   ├── cursors/     # Custom hand cursor
-│   ├── fonts/       # Kingstone display font
-│   ├── sprites/     # Items, drawers, NPC characters, emotion icons
-│   └── ui/          # Foldingpaper recipe bg, Crystal icons for chi bar
-└── project.godot
-
-submission_docs/
-├── reflection.md       # Design process write-up
-└──  playtest_report.md  # Four playtests with feedback
+│   ├── backgrounds/         Room mockups + button panels
+│   ├── bgm/                 BGM.mp3, Click/Deliver/Siren .wav
+│   ├── characters/          Baby calm + angry sprites
+│   ├── cursors/             Custom hand cursor
+│   ├── fonts/               Kingstone display font
+│   ├── sprites/             Items, drawers, NPC characters, emotion icons
+│   └── ui/                  Recipe background, Chi crystal icons
+└── submission_docs/
+    ├── reflection.md        Design process write-up + iteration log
+    └── playtest_report.md   Four playtests with feedback
 ```
 
 ---
 
-## Known Issues
-- Drag precision: Items must be dragged onto the NPC body area; edge cases may miss
-- Emotion icons may show placeholder if spritesheet frame offset is misaligned
+## Known issues
+
+- Drag precision: items need to land on the NPC body area — edge cases can miss
+- Emotion icon alignment: may show placeholder if spritesheet offset is off
 
 ---
 
 ## Credits
-- **Game Design & Development**: Peggy Daddy
-- **Art Assets**:
-  - ERW Village Interiors Pack (CC0 / Free Use) — backgrounds
-  - Tasty Characters Village Pack (Free Use) — NPC sprites
-  - Pixel Art RPG Icon Pack by Free Game Assets (Free) — item icons
-  - ZOSMA UI Kit (Free) — UI panels, crystal icons
-  - Cursor Pack 256 (Free) — custom cursor sprites
-  - Kingstone Demo Font (Free Demo License) — title font
-- **Music & SFX**: 
-  - Sound by https://mixkit.co/free-sound-effects/
-  - Music by https://bensound.com/royalty-free-music/
-- **Engine**: Godot 4 — godotengine.org (MIT License)
+
+- **Design + development**: Peggy Daddy
+- ERW Village Interiors Pack — room backgrounds
+- Tasty Characters Village Pack — NPC sprites
+- Pixel Art RPG Icon Pack (Free Game Assets) — item icons
+- ZOSMA UI Kit — panel art, crystal icons
+- Cursor Pack 256 — hand cursor
+- Kingstone Demo Font — title display (free demo license)
+- Audio: [Mixkit](https://mixkit.co/free-sound-effects/) + [Bensound](https://bensound.com/royalty-free-music/)
+- Engine: [Godot 4](https://godotengine.org) (MIT)
 
 ---
 
-## Build Info
-- Platform: macOS standalone / Web (Chrome)
-- Resolution: 1280x720
-- Godot version: 4.6.1 stable
+*Course project. Game design is surprisingly hard. Would recommend.*

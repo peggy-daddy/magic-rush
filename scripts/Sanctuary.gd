@@ -45,6 +45,7 @@ func _ready() -> void:
 	_apply_button_texture(nav_right_btn, "res://assets/backgrounds/direction.png")
 	GameManager.baby_woke.connect(_on_baby_woke)
 	GameManager.baby_silenced.connect(_on_baby_silenced)
+	GameManager.game_over.connect(_on_game_over)
 	transition_overlay.modulate.a = 0.0
 	status_label.text = ""
 	drag_icon.visible = false
@@ -335,3 +336,6 @@ func _go_to_living_room() -> void:
 		GameManager.change_room(GameManager.Room.LIVING_ROOM)
 		get_tree().change_scene_to_file("res://scenes/LivingRoom.tscn")
 	)
+
+func _on_game_over(_end_type: int) -> void:
+	get_tree().change_scene_to_file("res://scenes/GameOver.tscn")

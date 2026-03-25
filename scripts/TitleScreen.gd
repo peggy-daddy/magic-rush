@@ -65,9 +65,9 @@ func _ready() -> void:
 
 func _apply_button_texture(btn: Button, tex_path: String) -> void:
 	var tex_rect := TextureRect.new()
-	var img := Image.new()
-	if img.load(tex_path) == OK:
-		tex_rect.texture = ImageTexture.create_from_image(img)
+	var tex := load(tex_path) as Texture2D
+	if tex:
+		tex_rect.texture = tex
 	tex_rect.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	tex_rect.stretch_mode = TextureRect.STRETCH_SCALE
 	tex_rect.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

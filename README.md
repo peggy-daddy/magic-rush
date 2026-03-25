@@ -2,7 +2,10 @@
 
 A chaotic time-management crafting game where you're the only thing standing between a household and complete magical collapse.
 
-Built in Godot 4 for a game design course. Started as a feng shui delivery concept, ended up as something with a lot more personality.
+Built in Godot 4 for a game design course. 
+
+## Try here
+https://peggy-daddy.itch.io/magic-rush
 
 ---
 

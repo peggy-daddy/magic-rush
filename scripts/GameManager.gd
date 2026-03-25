@@ -167,7 +167,9 @@ func _process(delta: float) -> void:
 
 		if time_remaining <= 0:
 			time_remaining = 0
-			_end_game()
+			# Timer expired: NORMAL if chi > 0, FAIL if chi already at 0
+			var timer_result := EndType.FAIL if chi_value <= 0.0 else EndType.NORMAL
+			_end_game(timer_result)
 			return
 
 	# Baby wake timer — fixed 60-second interval
@@ -325,12 +327,15 @@ func _get_end_type() -> EndType:
 	else:
 		return EndType.NORMAL
 
-func _end_game() -> void:
+func _end_game(forced_type: int = -1) -> void:
 	if game_state == GameState.GAME_OVER:
 		return
 	game_state = GameState.GAME_OVER
 	timer_running = false
-	emit_signal("game_over", _get_end_type())
+	# If caller specifies the end type (e.g. timer expiry), use that directly.
+	# This prevents chi=0 mid-drain from overriding a timer-based NORMAL result.
+	var end_type: int = forced_type if forced_type >= 0 else _get_end_type()
+	emit_signal("game_over", end_type)
 
 func calculate_stars() -> int:
 	var pct: float = chi_value / chi_max
